@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Open Game Standards</title>
+  <meta name="description" content="Open, royalty-free standards for the connections between games and everything around them: motion rigs, haptics, dashboards and more. Home of the OGS Telemetry Standard (OGS-TS).">
+  <link rel="canonical" href="https://opengamestandards.org/">
+  <meta name="theme-color" content="#1d4730">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://opengamestandards.org/">
+  <meta property="og:title" content="Open Game Standards">
+  <meta property="og:description" content="Open, royalty-free standards connecting games to the hardware and software around them.">
+  <meta property="og:image" content="https://opengamestandards.org/assets/ogs-512.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="assets/ogs-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/ogs-512.png">
+  <link rel="stylesheet" href="assets/site.css">
+  <script>
+    document.documentElement.classList.add("js");
+    // Apply a saved theme before first paint (no flash). Storage may be unavailable.
+    try { var t = localStorage.getItem("ogs-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script src="assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#top" aria-label="Open Game Standards, home">
+        <img class="brand-mark only-light" src="assets/ogs-mark.svg" alt="" width="36" height="36"><img class="brand-mark only-dark" src="assets/ogs-mark-dark.svg" alt="" width="36" height="36">
+        <span>Open Game Standards</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#standards">Standards</a>
+        <a href="#ogs-ts">OGS-TS</a>
+        <a href="#start">Get started</a>
+        <a href="#implementations">Implementations</a>
+        <a href="#involved">Get involved</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle colour theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/Open-Game-Standards">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Open · Royalty-free · Local-first</p>
+          <h1>Games, and everything around them, speaking one language.</h1>
+          <p class="lede">Open Game Standards writes open, royalty-free standards for the connections between games and the hardware and software around them, and ships the tools to adopt them. Each side implements a standard once, and works with everything else that speaks it.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#start">Find your starting point</a>
+            <a class="btn" href="https://discord.gg/tseF4Q6U99">Join the Discord</a>
+          </div>
+        </div>
+
+        <figure class="console" aria-label="Illustrative OGS-TS stream as seen by a receiver">
+          <div class="console-bar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="console-title">ogs-ts receiver</span>
+            <span class="console-note">illustrative stream</span>
+          </div>
+          <div class="console-body">
+            <div class="gauges" aria-hidden="true">
+              <svg class="horizon" viewBox="0 0 100 100">
+                <defs><clipPath id="hz-clip"><circle cx="50" cy="50" r="46"/></clipPath></defs>
+                <g clip-path="url(#hz-clip)">
+                  <g class="hz-world">
+                    <rect x="-100" y="-100" width="300" height="150" class="hz-sky"/>
+                    <rect x="-100" y="50" width="300" height="150" class="hz-ground"/>
+                    <line x1="-100" y1="50" x2="200" y2="50" class="hz-line"/>
+                  </g>
+                </g>
+                <circle cx="50" cy="50" r="46" class="hz-ring"/>
+                <path d="M28 50 H42 L46 55 L50 50 L54 55 L58 50 H72" class="hz-ref"/>
+              </svg>
+              <dl class="readouts">
+                <div><dt>speed</dt><dd><span data-ro="speed">0.0</span> m/s</dd></div>
+                <div><dt>rpm</dt><dd data-ro="rpm">0</dd></div>
+                <div><dt>pitch</dt><dd><span data-ro="pitch">0.0</span>°</dd></div>
+                <div><dt>roll</dt><dd><span data-ro="roll">0.0</span>°</dd></div>
+              </dl>
+            </div>
+            <ol class="log" aria-live="off">
+              <li><span class="tag tag-d">DISCOVERY</span> "Demo Racer" · 1 object · 15 channels</li>
+              <li><span class="tag tag-m">MOTION</span> pose · vehicle.speed · engine.rpm</li>
+              <li><span class="tag tag-e">EVENT</span> body.impact</li>
+            </ol>
+          </div>
+          <figcaption class="console-foot">Discovery every 2 s · motion at the game's rate (shown throttled) · events when they happen</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section class="section problem">
+      <div class="wrap narrow">
+        <h2 class="section-title">Every connection is bespoke today</h2>
+        <p>Games don't run in isolation. Around them sit peripherals, lighting, streaming and overlay tools, accessibility devices, companion apps and simulation hardware, all of which work better when they can talk to the game. Today almost every one of those connections is built game by game, or tied to a single vendor's ecosystem.</p>
+        <div class="stat-row">
+          <div class="stat"><strong>72</strong><span>separate game readers in one motion-software project alone</span></div>
+          <div class="stat"><strong>1</strong><span>standard each side needs to implement instead</span></div>
+        </div>
+        <p class="muted">Developers support each device separately, device makers chase each game separately, and players get whatever happens to have been wired up.</p>
+      </div>
+    </section>
+
+    <!-- Principles -->
+    <section class="section" id="principles">
+      <div class="wrap">
+        <h2 class="section-title">How we build standards</h2>
+        <p class="section-sub">Every OGS standard is built the way the Telemetry Standard was.</p>
+        <ul class="cards cards-5">
+          <li class="card">
+            <h3>Open and royalty-free</h3>
+            <p>MIT licensed, free for anyone to implement, from hobbyists to hardware vendors.</p>
+          </li>
+          <li class="card">
+            <h3>Local-first</h3>
+            <p>Standards run between devices the player owns. No cloud, no account, nothing leaves the player's network.</p>
+          </li>
+          <li class="card">
+            <h3>Adoptable on day one</h3>
+            <p>Each standard ships with SDKs for the major engines and a reference implementation, so adding it is a small job, not a project.</p>
+          </li>
+          <li class="card">
+            <h3>Proven, not promised</h3>
+            <p>A conformance corpus every implementation is tested against, and validation against real games before it's called done.</p>
+          </li>
+          <li class="card">
+            <h3>Developed in the open</h3>
+            <p>Design discussion, validation evidence and the specifications themselves are public.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Standards -->
+    <section class="section alt" id="standards">
+      <div class="wrap">
+        <h2 class="section-title">Standards</h2>
+        <div class="standards">
+          <a class="standard-card" href="#ogs-ts">
+            <img class="std-logo only-light" src="assets/telemetry-standard.svg" alt="" width="72" height="72"><img class="std-logo only-dark" src="assets/telemetry-standard-dark.svg" alt="" width="72" height="72">
+            <div>
+              <span class="pill pill-ok">Published · v1</span>
+              <h3>OGS Telemetry Standard <span class="muted">(OGS-TS)</span></h3>
+              <p>Live game telemetry to motion platforms, haptics, dashboards and loggers.</p>
+            </div>
+          </a>
+          <div class="standard-card standard-next">
+            <div>
+              <span class="pill">Your problem here?</span>
+              <h3>Propose a standard</h3>
+              <p>If games and the devices around them keep solving the same integration problem one game at a time, that's a candidate. Bring the problem and the evidence to <a href="https://discord.gg/tseF4Q6U99">Discord</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OGS-TS -->
+    <section class="section" id="ogs-ts">
+      <div class="wrap">
+        <div class="ts-head">
+          <img class="only-light" src="assets/telemetry-standard.svg" alt="OGS Telemetry Standard logo" width="96" height="96"><img class="only-dark" src="assets/telemetry-standard-dark.svg" alt="OGS Telemetry Standard logo" width="96" height="96">
+          <div>
+            <h2 class="section-title">OGS Telemetry Standard</h2>
+            <p class="section-sub">Motion rigs, haptic vests and instrument dashboards all need the same thing from a game: what the player's vehicle or character is doing, moment to moment. OGS-TS lets a game describe itself once, on the local network, so every device listening understands it.</p>
+          </div>
+        </div>
+
+        <h3 class="sub-title">Three frames, one multicast group</h3>
+        <ol class="frames">
+          <li class="frame frame-d">
+            <span class="tag tag-d">DISCOVERY</span>
+            <h4>Every two seconds</h4>
+            <p>The game, its objects, and a dictionary of channels, each declared once with a name, type, unit and range.</p>
+          </li>
+          <li class="frame frame-m">
+            <span class="tag tag-m">MOTION</span>
+            <h4>At the game's telemetry rate</h4>
+            <p>The bare samples, keyed by the ids from discovery. A pose-only frame is about 70 bytes.</p>
+          </li>
+          <li class="frame frame-e">
+            <span class="tag tag-e">EVENT</span>
+            <h4>When they happen</h4>
+            <p>Impacts, gunfire and other stimuli, with replay and deduplication so a lossy network can't drop them.</p>
+          </li>
+        </ol>
+
+        <ul class="traits">
+          <li><strong>Read-only</strong> so it can't be used to cheat.</li>
+          <li><strong>Local</strong>: it never leaves the player's network.</li>
+          <li><strong>Extensible</strong>: games declare their own channels; receivers skip what they don't recognise.</li>
+          <li><strong>Precise</strong>: units, axes and signs settled once in <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CONVENTIONS.md">CONVENTIONS.md</a>.</li>
+        </ul>
+
+        <h3 class="sub-title">How it fits together</h3>
+        <div class="flow" role="img" aria-label="Engine plugins, loader mods and OGS-TS Bridge publish OGS-TS over UDP multicast on the local network; GameConn, dashboards, cockpits and loggers receive it, and GameConn drives motion platforms and haptics.">
+          <div class="flow-col">
+            <p class="flow-label">Sources</p>
+            <div class="node"><strong>Engine plugin</strong><span>Unity · Unreal · Godot · .NET</span></div>
+            <div class="node"><strong>Loader mod</strong><span>BepInEx · UE4SS · UEVR</span></div>
+            <div class="node"><strong>OGS-TS Bridge</strong><span>Forza · F1 · ACC · MSFS · …</span></div>
+          </div>
+          <div class="flow-link" aria-hidden="true"><span></span></div>
+          <div class="flow-hub">
+            <div class="hub">
+              <strong>LAN</strong>
+              <span>UDP multicast</span>
+              <code>239.255.17.17:40123</code>
+              <span class="muted">local network only</span>
+            </div>
+          </div>
+          <div class="flow-link" aria-hidden="true"><span></span></div>
+          <div class="flow-col">
+            <p class="flow-label">Receivers</p>
+            <div class="node"><strong>GameConn</strong><span>→ motion platforms · haptics</span></div>
+            <div class="node"><strong>Dashboards and cockpits</strong></div>
+            <div class="node"><strong>Loggers</strong></div>
+          </div>
+        </div>
+
+        <h3 class="sub-title">Evidence, not promises</h3>
+        <div class="evidence">
+          <div class="stat"><strong>100+</strong><span>documented game outputs mapped across 16 validation exercises, no open gaps</span></div>
+          <div class="stat"><strong>1,354</strong><span>Microsoft Flight Simulator 2024 variables, all mapped, with a <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/reference-msfs2024.md">sender reference</a></span></div>
+          <div class="stat"><strong>250</strong><span>documented iRacing variables plus session data, with a <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/reference-iracing.md">sender reference</a></span></div>
+          <div class="stat"><strong>1</strong><span>canonical encoding: every implementation emits byte-identical Cap'n Proto, proven against a shared <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/tree/main/conformance">conformance corpus</a></span></div>
+        </div>
+        <p class="proven"><strong>Proven in shipped games</strong> through the loader mods, with no changes to the games: Subnautica Below Zero, Hyper Storm, Exo One, Sable, Hot Wheels Unleashed, The Gunk, Stray and RoboCop: Rogue City.</p>
+      </div>
+    </section>
+
+    <!-- Starting point -->
+    <section class="section alt" id="start">
+      <div class="wrap">
+        <h2 class="section-title">Find your starting point</h2>
+        <p class="section-sub">Pick what describes you.</p>
+        <div class="chooser">
+          <div class="chooser-tabs" role="tablist" aria-label="You are…">
+            <button role="tab" id="tab-unity" aria-controls="p-unity" aria-selected="true">Making a game in Unity</button>
+            <button role="tab" id="tab-unreal" aria-controls="p-unreal" aria-selected="false">Making a game in Unreal</button>
+            <button role="tab" id="tab-godot" aria-controls="p-godot" aria-selected="false">Making a game in Godot 4 (.NET)</button>
+            <button role="tab" id="tab-dotnet" aria-controls="p-dotnet" aria-selected="false">Running a custom .NET engine</button>
+            <button role="tab" id="tab-hw" aria-controls="p-hw" aria-selected="false">Building hardware or receiver software</button>
+            <button role="tab" id="tab-lang" aria-controls="p-lang" aria-selected="false">Implementing in another language</button>
+            <button role="tab" id="tab-mod" aria-controls="p-mod" aria-selected="false">Playing a game with no telemetry</button>
+            <button role="tab" id="tab-bridge" aria-controls="p-bridge" aria-selected="false">Playing a game with its own telemetry</button>
+            <button role="tab" id="tab-rig" aria-controls="p-rig" aria-selected="false">Owning a motion rig or haptics</button>
+          </div>
+
+          <div class="chooser-panels">
+            <div class="panel" role="tabpanel" id="p-unity" aria-labelledby="tab-unity">
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unity">ogs-ts-unity</a></h3>
+              <p>Add a publisher component and bind your values. Plain C# source with no precompiled assemblies; runs on Mono and IL2CPP. Add the package to <code>Packages/manifest.json</code>, pinned to a release:</p>
+              <pre class="code"><code>"com.ogs.telemetry.unity": "https://github.com/Open-Game-Standards/ogs-ts-unity.git#v0.4.0"</code></pre>
+              <p>Then add <strong>OGS-TS/Telemetry Publisher</strong> to your vehicle and declare your channels in code.</p>
+            </div>
+            <div class="panel" role="tabpanel" id="p-unreal" aria-labelledby="tab-unreal">
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unreal">ogs-ts-unreal</a></h3>
+              <p>A plugin with no third-party dependencies. Drop it into your project's <code>Plugins/</code> folder, enable it, add <strong>TelemetryPublisher</strong> to your vehicle, then in <code>BeginPlay</code>:</p>
+              <pre class="code"><code>auto Handle = Telemetry-&gt;DeclareChannel(TEXT("engine.rpm"), TEXT("rpm"), 0, 9000, true);
+Telemetry-&gt;BindChannelRaw(Handle, [this]{ return Engine-&gt;Rpm; });</code></pre>
+            </div>
+            <div class="panel" role="tabpanel" id="p-godot" aria-labelledby="tab-godot">
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-godot">ogs-ts-godot</a></h3>
+              <p>An addon with a publisher node. Copy <code>addon/ogs_telemetry/</code> into your project as <code>addons/ogs_telemetry/</code>, then enable <strong>OGS Telemetry (OGS-TS)</strong> under Project Settings &gt; Plugins. Nothing needs adding to your game's csproj.</p>
+            </div>
+            <div class="panel" role="tabpanel" id="p-dotnet" aria-labelledby="tab-dotnet">
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet">ogs-ts-dotnet</a></h3>
+              <p>The engine-agnostic core every C# plugin is built on: the sender, the publisher with declare/bind/push wiring, and bind-time unit conversion, with no third-party runtime dependencies.</p>
+            </div>
+            <div class="panel" role="tabpanel" id="p-hw" aria-labelledby="tab-hw">
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet">ogs-ts-dotnet</a>, then <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/IMPLEMENTING.md">IMPLEMENTING.md</a></h3>
+              <p>The receiving library and a reference receiver. With any OGS-TS game running on your network, see the stream:</p>
+              <pre class="code"><code>git clone https://github.com/Open-Game-Standards/ogs-ts-dotnet
+cd ogs-ts-dotnet
+dotnet run --project src/TelemetryReceive</code></pre>
+              <p>The reference receiver prints the game's channel declarations, live motion and events, and flags anything that doesn't conform.</p>
+            </div>
+            <div class="panel" role="tabpanel" id="p-lang" aria-labelledby="tab-lang">
+              <h3><a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard">The standard</a></h3>
+              <p>The schema, the encoding rules and a conformance corpus to test against. Every implementation must produce byte-identical output for the same frame, so the corpus tells you exactly when you're done.</p>
+            </div>
+            <div class="panel" role="tabpanel" id="p-mod" aria-labelledby="tab-mod">
+              <h3><a href="#ecosystem">A loader mod</a></h3>
+              <p>OGS-TS for Unity and Unreal Engine games that don't ship it, with no changes to the game. Each mod loads through an established mod loader (BepInEx, UE4SS or UEVR), finds the pawn the player controls, and publishes its motion.</p>
+            </div>
+            <div class="panel" role="tabpanel" id="p-bridge" aria-labelledby="tab-bridge">
+              <h3><a href="#ecosystem">OGS-TS Bridge</a></h3>
+              <p>Translates the telemetry games already emit (Forza, F1, Assetto Corsa, Microsoft Flight Simulator and more) into OGS-TS, so OGS devices work with them today.</p>
+            </div>
+            <div class="panel" role="tabpanel" id="p-rig" aria-labelledby="tab-rig">
+              <h3><a href="#ecosystem">GameConn</a></h3>
+              <p>Receives OGS-TS from any game on the network and drives motion platforms and haptics through plugins, with per-game profiles.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementations -->
+    <section class="section" id="implementations">
+      <div class="wrap">
+        <h2 class="section-title">Implementations</h2>
+        <p class="section-sub">Every SDK is plain source with no third-party runtime dependencies, so it builds wherever its engine builds: Windows, Linux, macOS, ARM, and ahead-of-time platforms such as IL2CPP.</p>
+        <ul class="cards cards-3 repos">
+          <li class="card repo">
+            <h3><a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard">OGS-Telemetry-Standard</a></h3>
+            <p>The specification, schema, conventions, validation and conformance corpus.</p>
+            <a class="badge" href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+          </li>
+          <li class="card repo">
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet">ogs-ts-dotnet</a></h3>
+            <p>.NET reference implementation: sender core, receiving library, reference receiver.</p>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-dotnet/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-dotnet/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+          </li>
+          <li class="card repo">
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unity">ogs-ts-unity</a></h3>
+            <p>Unity package (2022.3+ and Unity 6).</p>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-unity/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-unity/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+          </li>
+          <li class="card repo">
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unreal">ogs-ts-unreal</a></h3>
+            <p>Unreal Engine plugin.</p>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-unreal/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-unreal/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+          </li>
+          <li class="card repo">
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-godot">ogs-ts-godot</a></h3>
+            <p>Godot 4 (.NET) addon.</p>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-godot/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-godot/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+          </li>
+          <li class="card repo">
+            <h3><a href="https://github.com/Open-Game-Standards/Motion-Telemetry-Documentation">Motion-Telemetry-Documentation</a></h3>
+            <p>Background on motion telemetry concepts.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Ecosystem -->
+    <section class="section alt" id="ecosystem">
+      <div class="wrap">
+        <h2 class="section-title">Loader mods and apps</h2>
+        <p class="section-sub">Built on OGS-TS by the founder under <a href="https://github.com/BrianGilbert">@BrianGilbert</a>, released from CI on every change.</p>
+
+        <h3 class="sub-title">Loader mods</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Mod</th><th scope="col">For</th><th scope="col">Loads through</th><th scope="col">Validated in</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="https://github.com/BrianGilbert/bepinex-ogs-ts">bepinex-ogs-ts</a></th><td>Unity games, Mono and IL2CPP</td><td>BepInEx 5 (Mono), BepInEx 6 (IL2CPP)</td><td>Subnautica Below Zero, Hyper Storm, Exo One, Sable</td></tr>
+              <tr><th scope="row"><a href="https://github.com/BrianGilbert/ue4ss-ogs-ts">ue4ss-ogs-ts</a></th><td>Unreal Engine 4 and 5 games</td><td>UE4SS</td><td>The Gunk, Stray, Hot Wheels Unleashed, RoboCop: Rogue City</td></tr>
+              <tr><th scope="row"><a href="https://github.com/BrianGilbert/uevr-ogs-ts">uevr-ogs-ts</a></th><td>Unreal Engine 4 and 5 games in VR</td><td>UEVR</td><td>The Gunk, Stray, RoboCop: Rogue City</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted small">Help with the mods is on the <a href="https://discord.gg/yyCp5D2Ccp">mod support server</a>.</p>
+
+        <h3 class="sub-title">Apps</h3>
+        <ul class="cards cards-2">
+          <li class="card">
+            <span class="pill">In development</span>
+            <h3><a href="https://github.com/BrianGilbert/ogs-ts-bridge">OGS-TS Bridge</a></h3>
+            <p>Translates the telemetry games already emit into OGS-TS: Forza Horizon and Motorsport, F1, DiRT Rally 2.0, DiRT 4, WRC, Project CARS, Automobilista 2, Assetto Corsa, ACC, BeamNG.drive, Live for Speed, and Microsoft Flight Simulator 2020 and 2024 over SimConnect with about 110 channels. It detects the running game automatically and adds tens of microseconds of latency.</p>
+          </li>
+          <li class="card">
+            <span class="pill">In development</span>
+            <h3><a href="https://github.com/BrianGilbert/GameConn">GameConn</a></h3>
+            <p>Receives OGS-TS from any game on the network and drives hardware through plugins: Yaw motion simulators, DOF Reality platforms and audio exciters so far, with per-game profiles. Built cross-platform, targeting at least Windows and Linux, with the aim that sponsorship keeps it free.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Background -->
+    <section class="section" id="background">
+      <div class="wrap">
+        <h2 class="section-title">Background</h2>
+        <ul class="cards cards-3 media">
+          <li class="card">
+            <a class="media-link" href="https://briangilbert.net/writings/local-telemetry-standard/">
+              <span class="media-kind">Article</span>
+              <h3>A common language for game telemetry</h3>
+              <p>Where the Telemetry Standard came from, why it kept going quiet, and what exists now.</p>
+            </a>
+          </li>
+          <li class="card">
+            <a class="media-link" href="https://www.youtube.com/watch?v=Jcs6R4Hk9Is">
+              <img src="https://img.youtube.com/vi/Jcs6R4Hk9Is/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+              <span class="media-kind">Video</span>
+              <h3>Leveling Up Gaming: Building a Standard for Epic Gameplay</h3>
+            </a>
+          </li>
+          <li class="card">
+            <a class="media-link" href="https://www.youtube.com/watch?v=Nq0YSA0Q6O4">
+              <img src="https://img.youtube.com/vi/Nq0YSA0Q6O4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+              <span class="media-kind">Video</span>
+              <h3>Overview of the iRacing API</h3>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Get involved -->
+    <section class="section involved" id="involved">
+      <div class="wrap">
+        <h2 class="section-title">Get involved</h2>
+        <div class="involved-grid">
+          <ul class="involve-list">
+            <li><strong>Talk to us</strong> on <a href="https://discord.gg/tseF4Q6U99">Discord</a>.</li>
+            <li><strong>Propose a standard.</strong> Bring the problem and the evidence to Discord.</li>
+            <li><strong>Improve an existing one.</strong> Shared channel names live in the <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CHANNELS.md">Common Channels annex</a>; new entries need evidence from at least two games.</li>
+            <li><strong>Contribute</strong> issues and pull requests to any <a href="https://github.com/Open-Game-Standards">repository</a>.</li>
+            <li><strong>Sponsor the work.</strong> It moves everything here forward: the standards and their SDKs, the loader mods, OGS-TS Bridge and GameConn.</li>
+          </ul>
+          <div class="involved-cta">
+            <a class="btn btn-primary" href="https://discord.gg/tseF4Q6U99">Join the Discord</a>
+            <a class="btn" href="https://github.com/sponsors/BrianGilbert">Sponsor on GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p>Founded by <a href="https://github.com/BrianGilbert">Brian Gilbert</a> in 2024 and developed in the open. The standards and their SDKs are MIT licensed and free for anyone to implement.</p>
+      <p class="footer-links"><a href="https://github.com/Open-Game-Standards">GitHub</a> · <a href="https://discord.gg/tseF4Q6U99">Discord</a> · <a href="https://github.com/sponsors/BrianGilbert">Sponsor</a></p>
+    </div>
+  </footer>
+</body>
+</html>
