@@ -204,11 +204,51 @@
           <li><strong>Precise</strong>: units, axes and signs settled once in <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CONVENTIONS.md" target="_blank" rel="noopener">CONVENTIONS.md</a>.</li>
         </ul>
 
+        <h3 class="sub-title">What you can do with it</h3>
+        <ul class="cards cards-3">
+          <li class="card">
+            <h4>VR without a PC</h4>
+            <p>A game on a standalone VR headset drives a motion seat, haptic vest or wind fans over the home network. Headsets can be receivers too, showing live instruments from a sim running on a PC or console.</p>
+          </li>
+          <li class="card">
+            <h4>Hardware that needs no software</h4>
+            <p>Motion platforms, haptics, wind fans, shift lights, gauge clusters and wheel displays can build in an OGS-TS receiver, with no control software on a PC. Each game describes its own channels, so one implementation works with every OGS-TS game.</p>
+          </li>
+          <li class="card">
+            <h4>Accessibility</h4>
+            <p>Footsteps, gunfire and impacts become haptic or visual cues, including the direction they came from. Speed, heading and proximity can become sound or vibration.</p>
+          </li>
+          <li class="card">
+            <h4>Lighting and the room</h4>
+            <p>WLED, Hue or Home Assistant flash on damage, follow engine RPM, dim at the start of a race and brighten on pause.</p>
+          </li>
+          <li class="card">
+            <h4>Second screens and streaming</h4>
+            <p>A tablet shows the dashboard or map, and a streaming PC builds live overlays from inputs and g-forces, with nothing extra running on the gaming machine.</p>
+          </li>
+          <li class="card">
+            <h4>Handhelds and game streaming</h4>
+            <p>Play on a handheld, or stream from a PC in another room, while a different device on the network drives the rig.</p>
+          </li>
+          <li class="card">
+            <h4>Several rigs, one game</h4>
+            <p>A cockpit with a co-pilot station, or a venue with several motion seats: every receiver joins the same stream with no per-device setup.</p>
+          </li>
+          <li class="card">
+            <h4>Fitness</h4>
+            <p>Road gradient and surface from the game set the resistance of a smart bike trainer through a bridge.</p>
+          </li>
+          <li class="card">
+            <h4>Testing and research</h4>
+            <p>Record a session once and replay it to tune a rig or test a device. Log inputs and motion alongside eye trackers or biometric sensors.</p>
+          </li>
+        </ul>
+
         <h3 class="sub-title">How it fits together</h3>
-        <div class="flow" role="img" aria-label="Engine plugins, loader mods and OGS-TS Bridge publish OGS-TS over UDP multicast on the local network; GameConn, dashboards, cockpits and loggers receive it, and GameConn drives motion platforms and haptics.">
+        <div class="flow" role="img" aria-label="Engine plugins for Unity, Unreal, Godot and custom engines, in games on PC, console or standalone VR headsets, loader mods and OGS-TS Bridge publish OGS-TS over UDP multicast on the local network. GameConn receives it and drives motion platforms and haptics; hardware with a built-in receiver (motion platforms, haptics, fans, lights and displays) needs no control software, and lighting and smart home, dashboards, cockpits, VR overlays, loggers and the OGS-TS Monitor receive it directly.">
           <div class="flow-col">
             <p class="flow-label">Sources</p>
-            <div class="node"><strong>Engine plugin</strong><span>Unity · Unreal · Godot · .NET</span></div>
+            <div class="node"><strong>Engine plugin</strong><span>Unity · Unreal · Godot · custom engines<br>on PC, console or VR headset</span></div>
             <div class="node"><strong>Loader mod</strong><span>BepInEx · UE4SS · UEVR</span></div>
             <div class="node"><strong>OGS-TS Bridge</strong><span>Forza · F1 · ACC · MSFS · …</span></div>
           </div>
@@ -225,8 +265,10 @@
           <div class="flow-col">
             <p class="flow-label">Receivers</p>
             <div class="node"><strong>GameConn</strong><span>→ motion platforms · haptics</span></div>
-            <div class="node"><strong>Dashboards and cockpits</strong></div>
-            <div class="node"><strong>Loggers</strong></div>
+            <div class="node"><strong>Hardware with a built-in receiver</strong><span>motion platforms · haptics · fans · lights · displays<br>no control software needed</span></div>
+            <div class="node"><strong>Lighting and smart home</strong></div>
+            <div class="node"><strong>Dashboards, cockpits and VR overlays</strong></div>
+            <div class="node"><strong>Loggers and the OGS-TS Monitor</strong></div>
           </div>
         </div>
 
