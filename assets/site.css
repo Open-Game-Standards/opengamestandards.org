@@ -137,6 +137,15 @@ p { margin: 0 0 1em; }
 .btn-primary { background: #1d4730; color: #f1f7ec; border-color: #1d4730; }
 .btn-primary:hover { background: #255a3d; border-color: #255a3d; }
 .btn-small { padding: 8px 14px; font-size: .9rem; border-radius: 10px; }
+/* Centre on the capitals, not the font's line box: system fonts differ in how
+   far their text sits from the middle. Padding grows by the space trimmed so
+   the buttons keep their size. */
+@supports (text-box: trim-both cap alphabetic) {
+  .btn, .modes b { text-box: trim-both cap alphabetic; }
+  .btn { display: inline-block; text-align: center; padding-block: 19px; } /* trimming skips flex boxes */
+  .btn-small { padding-block: 15px; }
+  .modes b { padding-block: 8px; }
+}
 
 /* Hero */
 .hero { padding: 56px 0 64px; position: relative; overflow: hidden; }
