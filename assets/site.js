@@ -278,13 +278,27 @@
   };
   const pause = () => { if (running) { running = false; pausedAt = performance.now(); } };
 
+  // a visitor's pause wins over the automatic resume when it scrolls back into view
+  let userPaused = false, onScreen = true;
+  const update = () => (!userPaused && onScreen && !document.hidden ? resume() : pause());
+
   const consoleEl = log.closest(".console");
+  const pauseBtn = consoleEl && consoleEl.querySelector(".console-pause");
+  if (pauseBtn) {
+    pauseBtn.hidden = false;
+    pauseBtn.addEventListener("click", () => {
+      userPaused = !userPaused;
+      pauseBtn.classList.toggle("is-paused", userPaused);
+      pauseBtn.textContent = userPaused ? "Play" : "Pause";
+      update();
+    });
+  }
   if ("IntersectionObserver" in window && consoleEl) {
     new IntersectionObserver((entries) => {
-      entries.forEach((e) => (e.isIntersecting && !document.hidden ? resume() : pause()));
+      entries.forEach((e) => { onScreen = e.isIntersecting; update(); });
     }).observe(consoleEl);
   }
-  document.addEventListener("visibilitychange", () => (document.hidden ? pause() : resume()));
+  document.addEventListener("visibilitychange", update);
 
   running = false;
   resume();
