@@ -43,7 +43,7 @@
         <button class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle colour theme">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
         </button>
-        <a class="btn btn-small" href="https://github.com/Open-Game-Standards">GitHub</a>
+        <a class="btn btn-small" href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </header>
@@ -58,7 +58,7 @@
           <p class="lede">Open Game Standards writes open, royalty-free standards for the connections between games and the hardware and software around them, and ships the tools to adopt them. Each side implements a standard once, and works with everything else that speaks it.</p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#start">Find your starting point</a>
-            <a class="btn" href="https://discord.gg/tseF4Q6U99">Join the Discord</a>
+            <a class="btn" href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Join the Discord</a>
           </div>
         </div>
 
@@ -94,7 +94,7 @@
               <li><span class="tag tag-e">EVENT</span> body.impact</li>
             </ol>
           </div>
-          <figcaption class="console-foot">Discovery every 2 s · motion at the game's rate · events when they happen. See your own stream with the <a href="https://github.com/Open-Game-Standards/ogs-ts-monitor">OGS-TS Monitor</a>.</figcaption>
+          <figcaption class="console-foot">Discovery every 2 s · motion at the game's rate · events when they happen. See your own stream with the <a href="https://github.com/Open-Game-Standards/ogs-ts-monitor" target="_blank" rel="noopener">OGS-TS Monitor</a>.</figcaption>
         </figure>
       </div>
     </section>
@@ -159,7 +159,7 @@
             <div>
               <span class="pill">Your problem here?</span>
               <h3>Propose a standard</h3>
-              <p>If games and the devices around them keep solving the same integration problem one game at a time, that's a candidate. Bring the problem and the evidence to <a href="https://discord.gg/tseF4Q6U99">Discord</a>.</p>
+              <p>If games and the devices around them keep solving the same integration problem one game at a time, that's a candidate. Bring the problem and the evidence to <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a>.</p>
             </div>
           </div>
         </div>
@@ -200,7 +200,7 @@
           <li><strong>Read-only</strong> so it can't be used to cheat.</li>
           <li><strong>Local</strong>: it never leaves the player's network.</li>
           <li><strong>Extensible</strong>: games declare their own channels; receivers skip what they don't recognise.</li>
-          <li><strong>Precise</strong>: units, axes and signs settled once in <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CONVENTIONS.md">CONVENTIONS.md</a>.</li>
+          <li><strong>Precise</strong>: units, axes and signs settled once in <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CONVENTIONS.md" target="_blank" rel="noopener">CONVENTIONS.md</a>.</li>
         </ul>
 
         <h3 class="sub-title">How it fits together</h3>
@@ -232,9 +232,9 @@
         <h3 class="sub-title">Evidence, not promises</h3>
         <div class="evidence">
           <div class="stat"><strong>100+</strong><span>documented game outputs mapped across 16 validation exercises, no open gaps</span></div>
-          <div class="stat"><strong>1,354</strong><span>Microsoft Flight Simulator 2024 variables, all mapped, with a <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/reference-msfs2024.md">sender reference</a></span></div>
-          <div class="stat"><strong>250</strong><span>documented iRacing variables plus session data, with a <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/reference-iracing.md">sender reference</a></span></div>
-          <div class="stat"><strong>1</strong><span>canonical encoding: every implementation emits byte-identical Cap'n Proto, proven against a shared <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/tree/main/conformance">conformance corpus</a></span></div>
+          <div class="stat"><strong>1,354</strong><span>Microsoft Flight Simulator 2024 variables, all mapped, with a <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/reference-msfs2024.md" target="_blank" rel="noopener">sender reference</a></span></div>
+          <div class="stat"><strong>250</strong><span>documented iRacing variables plus session data, with a <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/reference-iracing.md" target="_blank" rel="noopener">sender reference</a></span></div>
+          <div class="stat"><strong>1</strong><span>canonical encoding: every implementation emits byte-identical Cap'n Proto, proven against a shared <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/tree/main/conformance" target="_blank" rel="noopener">conformance corpus</a></span></div>
         </div>
         <p class="proven"><strong>Proven in shipped games</strong> through the loader mods, with no changes to the games: Subnautica Below Zero, Hyper Storm, Exo One, Sable, Hot Wheels Unleashed, The Gunk, Stray and RoboCop: Rogue City.</p>
       </div>
@@ -260,27 +260,27 @@
 
           <div class="chooser-panels">
             <div class="panel" role="tabpanel" id="p-unity" aria-labelledby="tab-unity">
-              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unity">ogs-ts-unity</a></h3>
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unity" target="_blank" rel="noopener">ogs-ts-unity</a></h3>
               <p>Add a publisher component and bind your values. Plain C# source with no precompiled assemblies; runs on Mono and IL2CPP. Add the package to <code>Packages/manifest.json</code>, pinned to a release:</p>
               <pre class="code"><code>"com.ogs.telemetry.unity": "https://github.com/Open-Game-Standards/ogs-ts-unity.git#v0.4.0"</code></pre>
               <p>Then add <strong>OGS-TS/Telemetry Publisher</strong> to your vehicle and declare your channels in code.</p>
             </div>
             <div class="panel" role="tabpanel" id="p-unreal" aria-labelledby="tab-unreal">
-              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unreal">ogs-ts-unreal</a></h3>
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unreal" target="_blank" rel="noopener">ogs-ts-unreal</a></h3>
               <p>A plugin with no third-party dependencies. Drop it into your project's <code>Plugins/</code> folder, enable it, add <strong>TelemetryPublisher</strong> to your vehicle, then in <code>BeginPlay</code>:</p>
               <pre class="code"><code>auto Handle = Telemetry-&gt;DeclareChannel(TEXT("engine.rpm"), TEXT("rpm"), 0, 9000, true);
 Telemetry-&gt;BindChannelRaw(Handle, [this]{ return Engine-&gt;Rpm; });</code></pre>
             </div>
             <div class="panel" role="tabpanel" id="p-godot" aria-labelledby="tab-godot">
-              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-godot">ogs-ts-godot</a></h3>
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-godot" target="_blank" rel="noopener">ogs-ts-godot</a></h3>
               <p>An addon with a publisher node. Copy <code>addon/ogs_telemetry/</code> into your project as <code>addons/ogs_telemetry/</code>, then enable <strong>OGS Telemetry (OGS-TS)</strong> under Project Settings &gt; Plugins. Nothing needs adding to your game's csproj.</p>
             </div>
             <div class="panel" role="tabpanel" id="p-dotnet" aria-labelledby="tab-dotnet">
-              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet">ogs-ts-dotnet</a></h3>
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet" target="_blank" rel="noopener">ogs-ts-dotnet</a></h3>
               <p>The engine-agnostic core every C# plugin is built on: the sender, the publisher with declare/bind/push wiring, and bind-time unit conversion, with no third-party runtime dependencies.</p>
             </div>
             <div class="panel" role="tabpanel" id="p-hw" aria-labelledby="tab-hw">
-              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet">ogs-ts-dotnet</a>, then <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/IMPLEMENTING.md">IMPLEMENTING.md</a></h3>
+              <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet" target="_blank" rel="noopener">ogs-ts-dotnet</a>, then <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/IMPLEMENTING.md" target="_blank" rel="noopener">IMPLEMENTING.md</a></h3>
               <p>The receiving library and a reference receiver. With any OGS-TS game running on your network, see the stream:</p>
               <pre class="code"><code>git clone https://github.com/Open-Game-Standards/ogs-ts-dotnet
 cd ogs-ts-dotnet
@@ -288,7 +288,7 @@ dotnet run --project src/TelemetryReceive</code></pre>
               <p>The reference receiver prints the game's channel declarations, live motion and events, and flags anything that doesn't conform.</p>
             </div>
             <div class="panel" role="tabpanel" id="p-lang" aria-labelledby="tab-lang">
-              <h3><a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard">The standard</a></h3>
+              <h3><a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard" target="_blank" rel="noopener">The standard</a></h3>
               <p>The schema, the encoding rules and a conformance corpus to test against. Every implementation must produce byte-identical output for the same frame, so the corpus tells you exactly when you're done.</p>
             </div>
             <div class="panel" role="tabpanel" id="p-mod" aria-labelledby="tab-mod">
@@ -315,32 +315,32 @@ dotnet run --project src/TelemetryReceive</code></pre>
         <p class="section-sub">Every SDK is plain source with no third-party runtime dependencies, so it builds wherever its engine builds: Windows, Linux, macOS, ARM, and ahead-of-time platforms such as IL2CPP.</p>
         <ul class="cards cards-3 repos">
           <li class="card repo">
-            <h3><a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard">OGS-Telemetry-Standard</a></h3>
+            <h3><a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard" target="_blank" rel="noopener">OGS-Telemetry-Standard</a></h3>
             <p>The specification, schema, conventions, validation and conformance corpus.</p>
-            <a class="badge" href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+            <a class="badge" href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/actions/workflows/ci.yml" target="_blank" rel="noopener"><img src="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
           </li>
           <li class="card repo">
-            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet">ogs-ts-dotnet</a></h3>
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet" target="_blank" rel="noopener">ogs-ts-dotnet</a></h3>
             <p>.NET reference implementation: sender core, receiving library, reference receiver.</p>
-            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-dotnet/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-dotnet/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-dotnet/actions/workflows/ci.yml" target="_blank" rel="noopener"><img src="https://github.com/Open-Game-Standards/ogs-ts-dotnet/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
           </li>
           <li class="card repo">
-            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unity">ogs-ts-unity</a></h3>
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unity" target="_blank" rel="noopener">ogs-ts-unity</a></h3>
             <p>Unity package (2022.3+ and Unity 6).</p>
-            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-unity/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-unity/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-unity/actions/workflows/ci.yml" target="_blank" rel="noopener"><img src="https://github.com/Open-Game-Standards/ogs-ts-unity/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
           </li>
           <li class="card repo">
-            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unreal">ogs-ts-unreal</a></h3>
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unreal" target="_blank" rel="noopener">ogs-ts-unreal</a></h3>
             <p>Unreal Engine plugin.</p>
-            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-unreal/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-unreal/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-unreal/actions/workflows/ci.yml" target="_blank" rel="noopener"><img src="https://github.com/Open-Game-Standards/ogs-ts-unreal/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
           </li>
           <li class="card repo">
-            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-godot">ogs-ts-godot</a></h3>
+            <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-godot" target="_blank" rel="noopener">ogs-ts-godot</a></h3>
             <p>Godot 4 (.NET) addon.</p>
-            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-godot/actions/workflows/ci.yml"><img src="https://github.com/Open-Game-Standards/ogs-ts-godot/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
+            <a class="badge" href="https://github.com/Open-Game-Standards/ogs-ts-godot/actions/workflows/ci.yml" target="_blank" rel="noopener"><img src="https://github.com/Open-Game-Standards/ogs-ts-godot/actions/workflows/ci.yml/badge.svg" alt="CI status" height="20" loading="lazy"></a>
           </li>
           <li class="card repo">
-            <h3><a href="https://github.com/Open-Game-Standards/Motion-Telemetry-Documentation">Motion-Telemetry-Documentation</a></h3>
+            <h3><a href="https://github.com/Open-Game-Standards/Motion-Telemetry-Documentation" target="_blank" rel="noopener">Motion-Telemetry-Documentation</a></h3>
             <p>Background on motion telemetry concepts.</p>
           </li>
         </ul>
@@ -351,31 +351,31 @@ dotnet run --project src/TelemetryReceive</code></pre>
     <section class="section alt" id="ecosystem">
       <div class="wrap">
         <h2 class="section-title">Loader mods and apps</h2>
-        <p class="section-sub">Built on OGS-TS by the founder under <a href="https://github.com/BrianGilbert">@BrianGilbert</a>, released from CI on every change.</p>
+        <p class="section-sub">Built on OGS-TS by the founder under <a href="https://github.com/BrianGilbert" target="_blank" rel="noopener">@BrianGilbert</a>, released from CI on every change.</p>
 
         <h3 class="sub-title">Loader mods</h3>
         <div class="table-wrap">
           <table>
             <thead><tr><th scope="col">Mod</th><th scope="col">For</th><th scope="col">Loads through</th><th scope="col">Validated in</th></tr></thead>
             <tbody>
-              <tr><th scope="row"><a href="https://github.com/BrianGilbert/bepinex-ogs-ts">bepinex-ogs-ts</a></th><td>Unity games, Mono and IL2CPP</td><td>BepInEx 5 (Mono), BepInEx 6 (IL2CPP)</td><td>Subnautica Below Zero, Hyper Storm, Exo One, Sable</td></tr>
-              <tr><th scope="row"><a href="https://github.com/BrianGilbert/ue4ss-ogs-ts">ue4ss-ogs-ts</a></th><td>Unreal Engine 4 and 5 games</td><td>UE4SS</td><td>The Gunk, Stray, Hot Wheels Unleashed, RoboCop: Rogue City</td></tr>
-              <tr><th scope="row"><a href="https://github.com/BrianGilbert/uevr-ogs-ts">uevr-ogs-ts</a></th><td>Unreal Engine 4 and 5 games in VR</td><td>UEVR</td><td>The Gunk, Stray, RoboCop: Rogue City</td></tr>
+              <tr><th scope="row"><a href="https://github.com/BrianGilbert/bepinex-ogs-ts" target="_blank" rel="noopener">bepinex-ogs-ts</a></th><td>Unity games, Mono and IL2CPP</td><td>BepInEx 5 (Mono), BepInEx 6 (IL2CPP)</td><td>Subnautica Below Zero, Hyper Storm, Exo One, Sable</td></tr>
+              <tr><th scope="row"><a href="https://github.com/BrianGilbert/ue4ss-ogs-ts" target="_blank" rel="noopener">ue4ss-ogs-ts</a></th><td>Unreal Engine 4 and 5 games</td><td>UE4SS</td><td>The Gunk, Stray, Hot Wheels Unleashed, RoboCop: Rogue City</td></tr>
+              <tr><th scope="row"><a href="https://github.com/BrianGilbert/uevr-ogs-ts" target="_blank" rel="noopener">uevr-ogs-ts</a></th><td>Unreal Engine 4 and 5 games in VR</td><td>UEVR</td><td>The Gunk, Stray, RoboCop: Rogue City</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="muted small">Help with the mods is on the <a href="https://discord.gg/yyCp5D2Ccp">mod support server</a>.</p>
+        <p class="muted small">Help with the mods is on the <a href="https://discord.gg/yyCp5D2Ccp" target="_blank" rel="noopener">mod support server</a>.</p>
 
         <h3 class="sub-title">Apps</h3>
         <ul class="cards cards-2">
           <li class="card">
             <span class="pill">In development</span>
-            <h3><a href="https://github.com/BrianGilbert/ogs-ts-bridge">OGS-TS Bridge</a></h3>
+            <h3><a href="https://github.com/BrianGilbert/ogs-ts-bridge" target="_blank" rel="noopener">OGS-TS Bridge</a></h3>
             <p>Translates the telemetry games already emit into OGS-TS: Forza Horizon and Motorsport, F1, DiRT Rally 2.0, DiRT 4, WRC, Project CARS, Automobilista 2, Assetto Corsa, ACC, BeamNG.drive, Live for Speed, and Microsoft Flight Simulator 2020 and 2024 over SimConnect with about 110 channels. It detects the running game automatically and adds tens of microseconds of latency.</p>
           </li>
           <li class="card">
             <span class="pill">In development</span>
-            <h3><a href="https://github.com/BrianGilbert/GameConn">GameConn</a></h3>
+            <h3><a href="https://github.com/BrianGilbert/GameConn" target="_blank" rel="noopener">GameConn</a></h3>
             <p>Receives OGS-TS from any game on the network and drives hardware through plugins: Yaw motion simulators, DOF Reality platforms and audio exciters so far, with per-game profiles. Built cross-platform, targeting at least Windows and Linux, with the aim that sponsorship keeps it free.</p>
           </li>
         </ul>
@@ -388,21 +388,21 @@ dotnet run --project src/TelemetryReceive</code></pre>
         <h2 class="section-title">Background</h2>
         <ul class="cards cards-3 media">
           <li class="card">
-            <a class="media-link" href="https://briangilbert.net/writings/local-telemetry-standard/">
+            <a class="media-link" href="https://briangilbert.net/writings/local-telemetry-standard/" target="_blank" rel="noopener">
               <span class="media-kind">Article</span>
               <h3>A common language for game telemetry</h3>
               <p>Where the Telemetry Standard came from, why it kept going quiet, and what exists now.</p>
             </a>
           </li>
           <li class="card">
-            <a class="media-link" href="https://www.youtube.com/watch?v=Jcs6R4Hk9Is">
+            <a class="media-link" href="https://www.youtube.com/watch?v=Jcs6R4Hk9Is" target="_blank" rel="noopener">
               <img src="https://img.youtube.com/vi/Jcs6R4Hk9Is/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
               <span class="media-kind">Video</span>
               <h3>Leveling Up Gaming: Building a Standard for Epic Gameplay</h3>
             </a>
           </li>
           <li class="card">
-            <a class="media-link" href="https://www.youtube.com/watch?v=Nq0YSA0Q6O4">
+            <a class="media-link" href="https://www.youtube.com/watch?v=Nq0YSA0Q6O4" target="_blank" rel="noopener">
               <img src="https://img.youtube.com/vi/Nq0YSA0Q6O4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
               <span class="media-kind">Video</span>
               <h3>Overview of the iRacing API</h3>
@@ -418,15 +418,15 @@ dotnet run --project src/TelemetryReceive</code></pre>
         <h2 class="section-title">Get involved</h2>
         <div class="involved-grid">
           <ul class="involve-list">
-            <li><strong>Talk to us</strong> on <a href="https://discord.gg/tseF4Q6U99">Discord</a>.</li>
+            <li><strong>Talk to us</strong> on <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a>.</li>
             <li><strong>Propose a standard.</strong> Bring the problem and the evidence to Discord.</li>
-            <li><strong>Improve an existing one.</strong> Shared channel names live in the <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CHANNELS.md">Common Channels annex</a>; new entries need evidence from at least two games.</li>
-            <li><strong>Contribute</strong> issues and pull requests to any <a href="https://github.com/Open-Game-Standards">repository</a>.</li>
+            <li><strong>Improve an existing one.</strong> Shared channel names live in the <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CHANNELS.md" target="_blank" rel="noopener">Common Channels annex</a>; new entries need evidence from at least two games.</li>
+            <li><strong>Contribute</strong> issues and pull requests to any <a href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">repository</a>.</li>
             <li><strong>Sponsor the work.</strong> It moves everything here forward: the standards and their SDKs, the loader mods, OGS-TS Bridge and GameConn.</li>
           </ul>
           <div class="involved-cta">
-            <a class="btn btn-primary" href="https://discord.gg/tseF4Q6U99">Join the Discord</a>
-            <a class="btn" href="https://github.com/sponsors/BrianGilbert">Sponsor on GitHub</a>
+            <a class="btn btn-primary" href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Join the Discord</a>
+            <a class="btn" href="https://github.com/sponsors/BrianGilbert" target="_blank" rel="noopener">Sponsor on GitHub</a>
           </div>
         </div>
       </div>
@@ -435,8 +435,8 @@ dotnet run --project src/TelemetryReceive</code></pre>
 
   <footer class="site-footer">
     <div class="wrap footer-row">
-      <p>Founded by <a href="https://github.com/BrianGilbert">Brian Gilbert</a> in 2024 and developed in the open. The standards and their SDKs are MIT licensed and free for anyone to implement.</p>
-      <p class="footer-links"><a href="https://github.com/Open-Game-Standards">GitHub</a> · <a href="https://discord.gg/tseF4Q6U99">Discord</a> · <a href="https://github.com/sponsors/BrianGilbert">Sponsor</a></p>
+      <p>Founded by <a href="https://github.com/BrianGilbert" target="_blank" rel="noopener">Brian Gilbert</a> in 2024 and developed in the open. The standards and their SDKs are MIT licensed and free for anyone to implement.</p>
+      <p class="footer-links"><a href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a> · <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a> · <a href="https://github.com/sponsors/BrianGilbert" target="_blank" rel="noopener">Sponsor</a></p>
     </div>
   </footer>
 </body>
