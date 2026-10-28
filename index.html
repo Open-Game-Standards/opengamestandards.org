@@ -62,40 +62,39 @@
           </div>
         </div>
 
-        <figure class="console" aria-label="Illustrative OGS-TS stream as seen by a receiver">
+        <figure class="console" aria-label="The OGS-TS Monitor showing a simulated OGS-TS stream">
           <div class="console-bar">
-            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="console-title">ogs-ts receiver</span>
-            <span class="console-note">illustrative stream</span>
+            <img class="console-logo" src="assets/telemetry-standard.svg" alt="" width="22" height="22">
+            <span class="console-title">OGS-TS Monitor</span>
+            <span class="console-note">simulated stream</span>
           </div>
           <div class="console-body">
-            <div class="gauges" aria-hidden="true">
-              <svg class="horizon" viewBox="0 0 100 100">
-                <defs><clipPath id="hz-clip"><circle cx="50" cy="50" r="46"/></clipPath></defs>
-                <g clip-path="url(#hz-clip)">
-                  <g class="hz-world">
-                    <rect x="-100" y="-100" width="300" height="150" class="hz-sky"/>
-                    <rect x="-100" y="50" width="300" height="150" class="hz-ground"/>
-                    <line x1="-100" y1="50" x2="200" y2="50" class="hz-line"/>
-                  </g>
-                </g>
-                <circle cx="50" cy="50" r="46" class="hz-ring"/>
-                <path d="M28 50 H42 L46 55 L50 50 L54 55 L58 50 H72" class="hz-ref"/>
-              </svg>
-              <dl class="readouts">
-                <div><dt>speed</dt><dd><span data-ro="speed">0.0</span> m/s</dd></div>
-                <div><dt>rpm</dt><dd data-ro="rpm">0</dd></div>
-                <div><dt>pitch</dt><dd><span data-ro="pitch">0.0</span>°</dd></div>
-                <div><dt>roll</dt><dd><span data-ro="roll">0.0</span>°</dd></div>
-              </dl>
+            <div class="console-head">
+              <span class="obj">demo_car <span class="star">★ primary</span></span>
+              <span class="modes" aria-hidden="true"><b class="on">Chase</b><b>World</b><b>Horizon</b></span>
+            </div>
+            <div class="views" aria-hidden="true">
+              <div class="view">
+                <span class="view-label">attitude · chase</span>
+                <svg class="attitude" viewBox="0 0 200 150"><g></g></svg>
+              </div>
+              <div class="view">
+                <span class="view-label">track · top-down</span>
+                <svg class="track" viewBox="0 0 200 150"><g></g></svg>
+              </div>
+            </div>
+            <div class="strips" aria-hidden="true">
+              <div class="strip"><span class="strip-label s-roll">roll</span><span class="strip-val" data-ro="roll">0.0 °</span><svg viewBox="0 0 300 24" preserveAspectRatio="none"><polyline class="s-roll"/></svg></div>
+              <div class="strip"><span class="strip-label s-pitch">pitch</span><span class="strip-val" data-ro="pitch">0.0 °</span><svg viewBox="0 0 300 24" preserveAspectRatio="none"><polyline class="s-pitch"/></svg></div>
+              <div class="strip"><span class="strip-label s-heave">heave y</span><span class="strip-val" data-ro="heave">1.00 g</span><svg viewBox="0 0 300 24" preserveAspectRatio="none"><polyline class="s-heave"/></svg></div>
             </div>
             <ol class="log" aria-live="off">
-              <li><span class="tag tag-d">DISCOVERY</span> "Demo Racer" · 1 object · 15 channels</li>
-              <li><span class="tag tag-m">MOTION</span> pose · vehicle.speed · engine.rpm</li>
+              <li><span class="tag tag-d">DISCOVERY</span> "OGS-TS Monitor demo" · schema 1 · 1 object · 4 channels</li>
+              <li><span class="tag tag-m">MOTION</span> 'demo_car' · yaw pitch roll · vehicle.speed · engine.rpm</li>
               <li><span class="tag tag-e">EVENT</span> body.impact</li>
             </ol>
           </div>
-          <figcaption class="console-foot">Discovery every 2 s · motion at the game's rate (shown throttled) · events when they happen</figcaption>
+          <figcaption class="console-foot">Discovery every 2 s · motion at the game's rate · events when they happen. See your own stream with the <a href="https://github.com/Open-Game-Standards/ogs-ts-monitor">OGS-TS Monitor</a>.</figcaption>
         </figure>
       </div>
     </section>
