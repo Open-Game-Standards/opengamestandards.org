@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News · Open Game Standards</title>
+  <meta name="description" content="Announcements and technical posts from Open Game Standards.">
+  <link rel="canonical" href="https://opengamestandards.org/news/">
+  <meta name="theme-color" content="#1d4730">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://opengamestandards.org/news/">
+  <meta property="og:title" content="News · Open Game Standards">
+  <meta property="og:description" content="Announcements and technical posts from Open Game Standards.">
+  <meta property="og:image" content="https://opengamestandards.org/assets/ogs-512.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/assets/ogs-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/ogs-512.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="alternate" type="application/atom+xml" title="Open Game Standards news" href="/news/feed.xml">
+  <script>
+    document.documentElement.classList.add("js");
+    try { var t = localStorage.getItem("ogs-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script src="/assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="/" aria-label="Open Game Standards, home">
+        <img class="brand-mark only-light" src="/assets/ogs-mark.svg" alt="" width="36" height="36"><img class="brand-mark only-dark" src="/assets/ogs-mark-dark.svg" alt="" width="36" height="36">
+        <span>Open Game Standards</span>
+      </a>
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <a href="/#standards">Standards</a>
+        <a href="/#ogs-ts">OGS-TS</a>
+        <a href="/#start">Get started</a>
+        <a href="/#implementations">Implementations</a>
+        <a href="/news/" aria-current="page">News</a>
+        <a href="/#involved">Get involved</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle colour theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu" title="Menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-head">
+      <div class="wrap">
+        <h1>News</h1>
+        <p class="lede">Announcements and technical posts. Follow along with the <a href="/news/feed.xml">Atom feed</a>, or see the <a href="/press/">press kit</a>.</p>
+      </div>
+    </header>
+
+    <div class="wrap prose">
+      <!-- Newest first. Add each new post here and to feed.xml. -->
+      <ul class="news-list">
+        <li class="card">
+          <p><span class="news-kind">Press release</span><time>2026-11-11</time></p>
+          <h2><a href="/news/ogs-ts-v1/">OGS-TS v1: implement once, work with everything</a></h2>
+          <p>Open Game Standards publishes version 1 of the OGS Telemetry Standard, with SDKs for Unity, Unreal and Godot, a conformance corpus and the OGS-TS Monitor.</p>
+        </li>
+        <li class="card">
+          <p><span class="news-kind">Technical</span><time>2026-11-11</time></p>
+          <h2><a href="/news/how-ogs-ts-works/">How OGS-TS works, and why it's built this way</a></h2>
+          <p>Three frames on one multicast group, one canonical encoding, and the evidence behind the schema. For developers deciding whether to adopt it.</p>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p>Founded by <a href="https://github.com/BrianGilbert" target="_blank" rel="noopener">Brian Gilbert</a> in 2024 and developed in the open. The standards and their SDKs are MIT licensed and free for anyone to implement.</p>
+      <p class="footer-links"><a href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a> · <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a> · <a href="https://github.com/sponsors/BrianGilbert" target="_blank" rel="noopener">Sponsor</a> · <a href="/news/">News</a> · <a href="/press/">Press</a></p>
+    </div>
+  </footer>
+</body>
+</html>

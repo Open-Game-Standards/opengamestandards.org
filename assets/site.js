@@ -17,6 +17,39 @@
     });
   }
 
+  // ---- Menu button (narrow screens) ----------------------------------------
+  const header = document.querySelector(".site-header");
+  const menuBtn = document.querySelector(".menu-toggle");
+  if (header && menuBtn) {
+    const isOpen = () => header.classList.contains("nav-open");
+    const setOpen = (open) => {
+      header.classList.toggle("nav-open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+    };
+    menuBtn.addEventListener("click", () => setOpen(!isOpen()));
+    header.querySelectorAll(".nav a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("click", (e) => { if (isOpen() && !header.contains(e.target)) setOpen(false); });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen()) { setOpen(false); menuBtn.focus(); }
+    });
+  }
+
+  // ---- Email addresses, assembled on request --------------------------------
+  // The page holds each part reversed, so there is no address in the HTML.
+  document.querySelectorAll(".email[data-user][data-domain]").forEach((el) => {
+    const btn = el.querySelector(".email-show");
+    if (!btn) return;
+    btn.addEventListener("click", () => {
+      const rev = (s) => s.split("").reverse().join("");
+      const addr = rev(el.dataset.user) + "@" + rev(el.dataset.domain);
+      const a = document.createElement("a");
+      a.href = "mailto:" + addr;
+      a.textContent = addr;
+      el.replaceChildren(a);
+      a.focus();
+    });
+  });
+
   // ---- Starting-point chooser (ARIA tabs) ----------------------------------
   const tabs = Array.from(document.querySelectorAll('.chooser-tabs [role="tab"]'));
   const select = (tab, focus) => {

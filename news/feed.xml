@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Newest entry first. Dates are RFC 3339, e.g. 2026-11-04T09:00:00Z.
+     -->
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Open Game Standards news</title>
+  <subtitle>Announcements and technical posts from Open Game Standards.</subtitle>
+  <id>https://opengamestandards.org/news/</id>
+  <link rel="alternate" type="text/html" href="https://opengamestandards.org/news/"/>
+  <link rel="self" type="application/atom+xml" href="https://opengamestandards.org/news/feed.xml"/>
+  <icon>https://opengamestandards.org/assets/ogs-512.png</icon>
+  <updated>2026-11-11T09:00:00Z</updated>
+  <author><name>Brian Gilbert</name></author>
+
+  <entry>
+    <title>OGS-TS v1: implement once, work with everything</title>
+    <id>https://opengamestandards.org/news/ogs-ts-v1/</id>
+    <link rel="alternate" type="text/html" href="https://opengamestandards.org/news/ogs-ts-v1/"/>
+    <published>2026-11-11T09:00:00Z</published>
+    <updated>2026-11-11T09:00:00Z</updated>
+    <category term="press-release"/>
+    <summary>Open Game Standards publishes version 1 of the OGS Telemetry Standard (OGS-TS), an open, royalty-free standard that lets a game describe what is happening in it once, on the player's local network, so every motion platform, haptic device, dashboard, light and accessibility device listening can understand it.</summary>
+  </entry>
+
+  <entry>
+    <title>How OGS-TS works, and why it's built this way</title>
+    <id>https://opengamestandards.org/news/how-ogs-ts-works/</id>
+    <link rel="alternate" type="text/html" href="https://opengamestandards.org/news/how-ogs-ts-works/"/>
+    <published>2026-11-11T09:00:00Z</published>
+    <updated>2026-11-11T09:00:00Z</updated>
+    <category term="technical"/>
+    <summary>For developers deciding whether to adopt OGS-TS: three frames on one multicast group, one canonical encoding with no runtime libraries, a conformance corpus, and the evidence behind the schema.</summary>
+  </entry>
+</feed>

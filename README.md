@@ -11,6 +11,9 @@ the only external images are the CI badges and the video thumbnails):
 | `index.html` | The page |
 | `assets/site.css`, `assets/site.js` | Styles (light/dark) and behaviour (theme toggle, starting-point chooser, copy buttons, the illustrative receiver console) |
 | `assets/*.svg`, `assets/ogs-512.png` | Brand marks (from the org profile), favicon and social image |
+| `news/` | News index, one folder per post (`news/<slug>/index.html`), and the Atom feed `news/feed.xml`. A new post goes in all three places: its folder, the index list and the feed |
+| `press/` | Press kit: fact sheet, descriptions, logos, colours, screenshots, contact |
+| `assets/press/` | Downloadable logos (from `ogs-logos`) and the OGS-TS Monitor screenshot |
 | `404.html` | Not-found page |
 | `CNAME` | Custom domain for GitHub Pages |
 | `.nojekyll` | Serve files as-is |

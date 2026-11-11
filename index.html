@@ -16,6 +16,7 @@
   <link rel="icon" href="assets/ogs-mark.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/ogs-512.png">
   <link rel="stylesheet" href="assets/site.css">
+  <link rel="alternate" type="application/atom+xml" title="Open Game Standards news" href="news/feed.xml">
   <script>
     document.documentElement.classList.add("js");
     // Apply a saved theme before first paint (no flash). Storage may be unavailable.
@@ -32,11 +33,12 @@
         <img class="brand-mark only-light" src="assets/ogs-mark.svg" alt="" width="36" height="36"><img class="brand-mark only-dark" src="assets/ogs-mark-dark.svg" alt="" width="36" height="36">
         <span>Open Game Standards</span>
       </a>
-      <nav class="nav" aria-label="Primary">
+      <nav class="nav" id="primary-nav" aria-label="Primary">
         <a href="#standards">Standards</a>
         <a href="#ogs-ts">OGS-TS</a>
         <a href="#start">Get started</a>
         <a href="#implementations">Implementations</a>
+        <a href="news/">News</a>
         <a href="#involved">Get involved</a>
       </nav>
       <div class="header-actions">
@@ -44,6 +46,9 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
         </button>
         <a class="btn btn-small" href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu" title="Menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
       </div>
     </div>
   </header>
@@ -99,6 +104,13 @@
         </figure>
       </div>
     </section>
+
+    <!-- Latest news -->
+    <div class="news-strip">
+      <div class="wrap">
+        <a href="news/ogs-ts-v1/"><span class="pill pill-ok">News</span><span>OGS-TS v1: implement once, work with everything</span></a>
+      </div>
+    </div>
 
     <!-- Problem -->
     <section class="section problem">
@@ -279,7 +291,7 @@
           <div class="stat"><strong>250</strong><span>documented iRacing variables plus session data, with a <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/reference-iracing.md" target="_blank" rel="noopener">sender reference</a></span></div>
           <div class="stat"><strong>1</strong><span>canonical encoding: every implementation emits byte-identical Cap'n Proto, proven against a shared <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/tree/main/conformance" target="_blank" rel="noopener">conformance corpus</a></span></div>
         </div>
-        <p class="proven"><strong>Proven in shipped games</strong> through the loader mods, with no changes to the games: Subnautica Below Zero, Hyper Storm, Exo One, Sable, Hot Wheels Unleashed, The Gunk, Stray and RoboCop: Rogue City.</p>
+        <p class="proven"><strong>Proven in shipped games</strong> through the loader mods, with no changes to the games: Subnautica Below Zero, Hyper Storm, Exo One, Sable, Turbo Golf Racing, Torque Drift, Hot Wheels Unleashed, The Gunk, Stray and RoboCop: Rogue City.</p>
       </div>
     </section>
 
@@ -305,7 +317,7 @@
             <div class="panel" role="tabpanel" id="p-unity" aria-labelledby="tab-unity">
               <h3><a href="https://github.com/Open-Game-Standards/ogs-ts-unity" target="_blank" rel="noopener">ogs-ts-unity</a></h3>
               <p>Add a publisher component and bind your values. Plain C# source with no precompiled assemblies; runs on Mono and IL2CPP. Add the package to <code>Packages/manifest.json</code>, pinned to a release:</p>
-              <pre class="code"><code>"com.ogs.telemetry.unity": "https://github.com/Open-Game-Standards/ogs-ts-unity.git#v0.4.0"</code></pre>
+              <pre class="code"><code>"com.ogs.telemetry.unity": "https://github.com/Open-Game-Standards/ogs-ts-unity.git#v0.10.0"</code></pre>
               <p>Then add <strong>OGS-TS/Telemetry Publisher</strong> to your vehicle and declare your channels in code.</p>
             </div>
             <div class="panel" role="tabpanel" id="p-unreal" aria-labelledby="tab-unreal">
@@ -401,7 +413,7 @@ dotnet run --project src/TelemetryReceive</code></pre>
           <table>
             <thead><tr><th scope="col">Mod</th><th scope="col">For</th><th scope="col">Loads through</th><th scope="col">Validated in</th></tr></thead>
             <tbody>
-              <tr><th scope="row"><a href="https://github.com/BrianGilbert/bepinex-ogs-ts" target="_blank" rel="noopener">bepinex-ogs-ts</a></th><td>Unity games, Mono and IL2CPP</td><td>BepInEx 5 (Mono), BepInEx 6 (IL2CPP)</td><td>Subnautica Below Zero, Hyper Storm, Exo One, Sable</td></tr>
+              <tr><th scope="row"><a href="https://github.com/BrianGilbert/bepinex-ogs-ts" target="_blank" rel="noopener">bepinex-ogs-ts</a></th><td>Unity games, Mono and IL2CPP</td><td>BepInEx 5 (Mono), BepInEx 6 (IL2CPP)</td><td>Subnautica Below Zero, Hyper Storm, Exo One, Sable, Turbo Golf Racing, Torque Drift</td></tr>
               <tr><th scope="row"><a href="https://github.com/BrianGilbert/ue4ss-ogs-ts" target="_blank" rel="noopener">ue4ss-ogs-ts</a></th><td>Unreal Engine 4 and 5 games</td><td>UE4SS</td><td>The Gunk, Stray, Hot Wheels Unleashed, RoboCop: Rogue City</td></tr>
               <tr><th scope="row"><a href="https://github.com/BrianGilbert/uevr-ogs-ts" target="_blank" rel="noopener">uevr-ogs-ts</a></th><td>Unreal Engine 4 and 5 games in VR</td><td>UEVR</td><td>The Gunk, Stray, RoboCop: Rogue City</td></tr>
             </tbody>
@@ -479,7 +491,7 @@ dotnet run --project src/TelemetryReceive</code></pre>
   <footer class="site-footer">
     <div class="wrap footer-row">
       <p>Founded by <a href="https://github.com/BrianGilbert" target="_blank" rel="noopener">Brian Gilbert</a> in 2024 and developed in the open. The standards and their SDKs are MIT licensed and free for anyone to implement.</p>
-      <p class="footer-links"><a href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a> · <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a> · <a href="https://github.com/sponsors/BrianGilbert" target="_blank" rel="noopener">Sponsor</a></p>
+      <p class="footer-links"><a href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a> · <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a> · <a href="https://github.com/sponsors/BrianGilbert" target="_blank" rel="noopener">Sponsor</a> · <a href="news/">News</a> · <a href="press/">Press</a></p>
     </div>
   </footer>
 </body>

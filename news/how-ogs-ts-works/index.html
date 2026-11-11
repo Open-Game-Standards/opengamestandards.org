@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How OGS-TS works, and why it's built this way · Open Game Standards</title>
+  <meta name="description" content="For developers deciding whether to adopt the OGS Telemetry Standard: how it is built, the design choices, and the evidence behind it.">
+  <link rel="canonical" href="https://opengamestandards.org/news/how-ogs-ts-works/">
+  <meta name="theme-color" content="#1d4730">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://opengamestandards.org/news/how-ogs-ts-works/">
+  <meta property="og:title" content="How OGS-TS works, and why it's built this way">
+  <meta property="og:description" content="Three frames on one multicast group, one canonical encoding, and a conformance corpus every implementation is tested against.">
+  <meta property="og:image" content="https://opengamestandards.org/assets/ogs-512.png">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="/assets/ogs-mark.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/ogs-512.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="alternate" type="application/atom+xml" title="Open Game Standards news" href="/news/feed.xml">
+  <script>
+    document.documentElement.classList.add("js");
+    try { var t = localStorage.getItem("ogs-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script src="/assets/site.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="/" aria-label="Open Game Standards, home">
+        <img class="brand-mark only-light" src="/assets/ogs-mark.svg" alt="" width="36" height="36"><img class="brand-mark only-dark" src="/assets/ogs-mark-dark.svg" alt="" width="36" height="36">
+        <span>Open Game Standards</span>
+      </a>
+      <nav class="nav" id="primary-nav" aria-label="Primary">
+        <a href="/#standards">Standards</a>
+        <a href="/#ogs-ts">OGS-TS</a>
+        <a href="/#start">Get started</a>
+        <a href="/#implementations">Implementations</a>
+        <a href="/news/" aria-current="page">News</a>
+        <a href="/#involved">Get involved</a>
+      </nav>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" aria-label="Toggle colour theme" title="Toggle colour theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg>
+        </button>
+        <a class="btn btn-small" href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu" title="Menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article>
+      <header class="page-head">
+        <div class="wrap">
+          <p class="crumbs"><a href="/news/">News</a></p>
+          <p class="eyebrow">Technical background</p>
+          <h1>How OGS-TS works, and why it's built this way</h1>
+          <p class="article-meta"><time>2026-11-11</time> · Companion to the <a href="/news/ogs-ts-v1/">OGS-TS v1 announcement</a></p>
+        </div>
+      </header>
+
+      <div class="wrap prose">
+        <p>The OGS Telemetry Standard (OGS-TS) lets a game describe what is happening in it once, on the local network, so any device listening can understand it. This post is for developers deciding whether to adopt it: how it is built, what the design choices are, and what evidence stands behind it. The normative details are in the <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard" target="_blank" rel="noopener">standard's repository</a>.</p>
+
+        <h2>A pattern motorsport already solved</h2>
+        <p>Race cars have carried dozens of sensors over a shared bus for decades. The trick is the CAN bus with a DBC file: declare the signal dictionary once, then stream bare values. Nobody puts the signal name and unit on every sample.</p>
+        <p>OGS-TS applies the same idea to games. The standard was first committed in April 2024, and was previously published as the Local Telemetry Standard.</p>
+
+        <h2>Three frames, one multicast group</h2>
+        <p>Everything travels as UDP multicast on the local network (default <code>239.255.17.17:40123</code>), so any number of receivers can join with no per-device setup.</p>
+        <ul>
+          <li><strong>Discovery</strong>, every two seconds: the game, its objects, and a dictionary of channels. Each channel is declared once with an id, name, type, unit and range. A receiver that joins late has the full picture within two seconds.</li>
+          <li><strong>Motion</strong>, at the game's telemetry rate: the bare samples, keyed by the ids from discovery. 60 Hz is typical, not a ceiling. A pose-only frame is about 70 bytes.</li>
+          <li><strong>Event</strong>, when something happens: impacts, gunfire and other discrete stimuli, with replay and deduplication so a lossy network cannot drop them.</li>
+        </ul>
+        <p>Games declare their own channels. A rafting game declares what a raft has, not what a car has, and receivers skip channels they don't recognise. Shared names live in the <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CHANNELS.md" target="_blank" rel="noopener">Common Channels annex</a>, and a new entry needs evidence from at least two games.</p>
+
+        <h2>One canonical encoding, no runtime libraries</h2>
+        <p>Frames are Cap'n Proto, chosen because decoders can skip fields they don't recognise. The schema can grow without breaking receivers already deployed.</p>
+        <p>OGS-TS goes a step further than ordinary Cap'n Proto: normative encoding rules define one canonical byte layout per frame, and every implementation must produce byte-identical output. Frame writers are generated from the schema for both C# and C++. None of the SDKs needs a Cap'n Proto runtime library, so they carry no third-party dependencies and build wherever their engine builds: Windows, Linux, macOS, ARM, and ahead-of-time platforms such as IL2CPP.</p>
+        <p>A shared conformance corpus checks every implementation in continuous integration, byte for byte. The corpus itself is independently verified with the official Cap'n Proto tools. If you implement OGS-TS in another language, the corpus tells you exactly when you are done.</p>
+
+        <h2>Conventions, settled once</h2>
+        <p>Steering direction, axis orientation, radians or degrees: these are the questions every consumer used to learn per game. <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/CONVENTIONS.md" target="_blank" rel="noopener">CONVENTIONS.md</a> settles them for every sender. The SDKs share one unit-conversion table and convert at bind time, so a publisher written for any engine produces frames any receiver can consume.</p>
+
+        <h2>Evidence</h2>
+        <p>A schema is only useful if real games fit in it. OGS-TS has been mapped against more than a hundred documented game outputs across sixteen validation exercises, covering official SDKs, community reverse-engineered offsets, vendor-encapsulated integrations and game-native UDP outputs. There are no open gaps: every source field fits.</p>
+        <ul>
+          <li><strong>Microsoft Flight Simulator 2024:</strong> all 1,354 exposed variables mapped, with a sender reference.</li>
+          <li><strong>iRacing:</strong> 250 documented variables plus session data, with a sender reference.</li>
+        </ul>
+        <p>It also runs in shipped games. Three loader mods add OGS-TS to Unity and Unreal Engine titles that don't ship it, with no changes to the games:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Mod</th><th>Loads through</th><th>Validated in</th></tr></thead>
+            <tbody>
+              <tr><td><a href="https://github.com/BrianGilbert/bepinex-ogs-ts" target="_blank" rel="noopener">bepinex-ogs-ts</a></td><td>BepInEx 5 (Mono), BepInEx 6 (IL2CPP)</td><td>Subnautica Below Zero, Hyper Storm, Exo One, Sable, Turbo Golf Racing, Torque Drift</td></tr>
+              <tr><td><a href="https://github.com/BrianGilbert/ue4ss-ogs-ts" target="_blank" rel="noopener">ue4ss-ogs-ts</a></td><td>UE4SS</td><td>The Gunk, Stray, Hot Wheels Unleashed, RoboCop: Rogue City</td></tr>
+              <tr><td><a href="https://github.com/BrianGilbert/uevr-ogs-ts" target="_blank" rel="noopener">uevr-ogs-ts</a></td><td>UEVR</td><td>The Gunk, Stray, RoboCop: Rogue City</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The mods follow one rule from the standard: the motion object is the pawn the player controls, not the camera. Engines smooth cameras, and a camera would feed the rig's motion back into the view. The pawn is the rigid body a motion platform is trying to reproduce.</p>
+
+        <h2>Safe by design</h2>
+        <ul>
+          <li><strong>Read-only.</strong> Receivers cannot send anything back to the game, so the stream cannot be used to cheat.</li>
+          <li><strong>Local.</strong> Telemetry never leaves the player's network. No cloud, no account.</li>
+        </ul>
+
+        <h2>Getting started</h2>
+        <ul>
+          <li><strong>Making a game:</strong> <a href="https://github.com/Open-Game-Standards/ogs-ts-unity" target="_blank" rel="noopener">ogs-ts-unity</a> (2022.3+ and Unity 6, Mono and IL2CPP), <a href="https://github.com/Open-Game-Standards/ogs-ts-unreal" target="_blank" rel="noopener">ogs-ts-unreal</a>, <a href="https://github.com/Open-Game-Standards/ogs-ts-godot" target="_blank" rel="noopener">ogs-ts-godot</a> (Godot 4 .NET), or <a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet" target="_blank" rel="noopener">ogs-ts-dotnet</a> for a custom .NET engine.</li>
+          <li><strong>Building hardware or receiver software:</strong> the receiving library and reference receiver in <a href="https://github.com/Open-Game-Standards/ogs-ts-dotnet" target="_blank" rel="noopener">ogs-ts-dotnet</a>, then <a href="https://github.com/Open-Game-Standards/OGS-Telemetry-Standard/blob/main/IMPLEMENTING.md" target="_blank" rel="noopener">IMPLEMENTING.md</a>.</li>
+          <li><strong>Checking a stream:</strong> the <a href="https://github.com/Open-Game-Standards/ogs-ts-monitor" target="_blank" rel="noopener">OGS-TS Monitor</a> shows every sender on your network and flags anything that doesn't conform.</li>
+          <li><strong>Questions:</strong> <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a>.</li>
+        </ul>
+
+        <div class="related">
+          <a class="btn btn-primary" href="/#start">Find your starting point</a>
+          <a class="btn" href="/news/ogs-ts-v1/">Read the announcement</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p>Founded by <a href="https://github.com/BrianGilbert" target="_blank" rel="noopener">Brian Gilbert</a> in 2024 and developed in the open. The standards and their SDKs are MIT licensed and free for anyone to implement.</p>
+      <p class="footer-links"><a href="https://github.com/Open-Game-Standards" target="_blank" rel="noopener">GitHub</a> · <a href="https://discord.gg/tseF4Q6U99" target="_blank" rel="noopener">Discord</a> · <a href="https://github.com/sponsors/BrianGilbert" target="_blank" rel="noopener">Sponsor</a> · <a href="/news/">News</a> · <a href="/press/">Press</a></p>
+    </div>
+  </footer>
+</body>
+</html>
