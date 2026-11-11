@@ -439,8 +439,8 @@ tbody td { color: var(--ink-2); }
 .figure figcaption { color: var(--muted); font-size: .92rem; margin-top: 10px; }
 
 /* Video thumbnail: play button so it reads as a video, not a picture */
-.figure-video a { position: relative; display: block; border-radius: var(--radius); }
-.figure-video a::after {
+.figure-video > a { position: relative; display: block; border-radius: var(--radius); }
+.figure-video > a::after {
   content: "";
   position: absolute; top: 50%; left: 50%;
   width: 84px; height: 84px; margin: -42px 0 0 -42px;
@@ -450,11 +450,11 @@ tbody td { color: var(--ink-2); }
   transition: transform .15s ease, background-color .15s ease;
   pointer-events: none;
 }
-.figure-video a:hover::after,
-.figure-video a:focus-visible::after { transform: scale(1.08); background-color: rgba(0, 0, 0, .86); }
-.figure-video a:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 3px; }
+.figure-video > a:hover::after,
+.figure-video > a:focus-visible::after { transform: scale(1.08); background-color: rgba(0, 0, 0, .86); }
+.figure-video > a:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 3px; }
 @media (max-width: 600px) {
-  .figure-video a::after { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+  .figure-video > a::after { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
 }
 
 /* Email shown on request, so the address isn't in the page for harvesters */
