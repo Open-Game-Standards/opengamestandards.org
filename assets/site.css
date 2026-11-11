@@ -438,6 +438,25 @@ tbody td { color: var(--ink-2); }
 .figure img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); }
 .figure figcaption { color: var(--muted); font-size: .92rem; margin-top: 10px; }
 
+/* Video thumbnail: play button so it reads as a video, not a picture */
+.figure-video a { position: relative; display: block; border-radius: var(--radius); }
+.figure-video a::after {
+  content: "";
+  position: absolute; top: 50%; left: 50%;
+  width: 84px; height: 84px; margin: -42px 0 0 -42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 54% 50% / 46% no-repeat;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .85), 0 6px 24px rgba(0, 0, 0, .4);
+  transition: transform .15s ease, background-color .15s ease;
+  pointer-events: none;
+}
+.figure-video a:hover::after,
+.figure-video a:focus-visible::after { transform: scale(1.08); background-color: rgba(0, 0, 0, .86); }
+.figure-video a:focus-visible { outline: 3px solid var(--accent, currentColor); outline-offset: 3px; }
+@media (max-width: 600px) {
+  .figure-video a::after { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+}
+
 /* Email shown on request, so the address isn't in the page for harvesters */
 .email-show { font: inherit; color: var(--accent-ink); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .email-show:hover { text-decoration-thickness: 2px; }

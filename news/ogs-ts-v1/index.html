@@ -74,11 +74,11 @@
       <div class="wrap prose">
         <p>Open Game Standards (OGS) today announces version 1 of the OGS Telemetry Standard (OGS-TS), an open, royalty-free standard that lets a game describe what is happening in it once, on the player's local network, so that every motion platform, haptic device, dashboard, light and accessibility device listening can understand it. The standard ships with SDKs for Unity, Unreal Engine and Godot, a .NET reference implementation, a conformance corpus and a desktop monitor, all MIT licensed.</p>
 
-        <figure class="figure">
-          <a href="https://www.youtube.com/watch?v=n5iYk98NX3c" target="_blank" rel="noopener">
-            <img src="https://img.youtube.com/vi/n5iYk98NX3c/maxresdefault.jpg" alt="Watch: OGS-TS driving a motion platform and the OGS-TS Monitor from one stream" loading="lazy" width="1280" height="720">
+        <figure class="figure figure-video">
+          <a href="https://www.youtube.com/watch?v=n5iYk98NX3c" target="_blank" rel="noopener" aria-label="Play video on YouTube: OGS-TS driving a motion platform and the OGS-TS Monitor from one stream">
+            <img src="https://img.youtube.com/vi/n5iYk98NX3c/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720">
           </a>
-          <figcaption>Watch on YouTube: one stream, several receivers, none of them set up for the game.</figcaption>
+          <figcaption>Video: <a href="https://www.youtube.com/watch?v=n5iYk98NX3c" target="_blank" rel="noopener">watch on YouTube</a>. One stream, several receivers, none of them set up for the game.</figcaption>
         </figure>
 
         <p>Today almost every connection between a game and the hardware around it is built game by game. The open plugin repository for one motion platform's software alone lists 72 separate game readers. Where games do emit telemetry, it is shaped for one kind of device: a rafting game plugin for another motion platform's software ends up reporting engine RPM and per-corner suspension, because car telemetry is what motion software expects, and a raft has no engine. Developers support each device separately, and device makers chase each game separately.</p>
@@ -89,7 +89,7 @@
 
         <p><strong>For hardware developers</strong>, one receiver works with every OGS-TS game, because each game declares its own channels. Devices can build a receiver in and need no control software on a PC. Every implementation emits byte-identical frames, checked against a shared conformance corpus, so "done" is testable. The <a href="https://github.com/Open-Game-Standards/ogs-ts-monitor" target="_blank" rel="noopener">OGS-TS Monitor</a>, a cross-platform desktop receiver, shows every sender on the network and flags anything that does not conform.</p>
 
-        <p>The schema has been mapped against more than a hundred documented game outputs across sixteen validation exercises with no open gaps, including all 1,354 Microsoft Flight Simulator 2024 variables. It has already been tested in ten shipped games through loader mods, with no changes to the games: Subnautica Below Zero, Hyper Storm, Exo One, Sable, Turbo Golf Racing, Torque Drift, Hot Wheels Unleashed, The Gunk, Stray and RoboCop: Rogue City. For hardware makers needing content on day one, OGS-TS Bridge, in development, already translates the telemetry that Forza, F1, Assetto Corsa Competizione, Microsoft Flight Simulator and others emit to the OGS-TS format.</p>
+        <p>The schema has been mapped against more than a hundred documented game outputs across sixteen validation exercises with no open gaps, including all 1,354 Microsoft Flight Simulator 2024 variables. It has already been tested in ten shipped games through loader mods, with no changes to the games: Subnautica Below Zero, Hyper Storm, Exo One, Sable, Turbo Golf Racing, Torque Drift, Hot Wheels Unleashed, The Gunk, Stray and RoboCop: Rogue City. For hardware makers needing content on day one, <a href="https://github.com/BrianGilbert/ogs-ts-bridge" target="_blank" rel="noopener">OGS-TS Bridge</a>, a separate Windows tool by the founder, available to download on GitHub and in active development, already translates the telemetry that Forza, F1, Assetto Corsa Competizione, Microsoft Flight Simulator and others emit to the OGS-TS format.</p>
 
         <p>Motion is the first use, not the only one. The same stream can drive smart lighting, streaming overlays, second-screen dashboards, smart bike trainers, and accessibility cues that turn footsteps and impacts into directional haptics, including from standalone VR headsets with no PC involved.</p>
 
