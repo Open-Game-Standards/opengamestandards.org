@@ -96,7 +96,7 @@
   // ---- Console: a small OGS-TS Monitor --------------------------------------
   // Simulated, not decoded: the same demo car the OGS-TS Monitor's built-in
   // demo sender publishes (same motion model, names and channels), drawn the
-  // way the app draws it: chase-view body axes, top-down track, strips, log.
+  // way the app draws it: world-view body axes, top-down track, strips, log.
   const log = document.querySelector(".console .log");
   const attG = document.querySelector(".console svg.attitude g");
   const trackG = document.querySelector(".console svg.track g");
@@ -127,7 +127,7 @@
     return r;
   };
   const apply = (m, v) => [m[0] * v[0] + m[1] * v[1] + m[2] * v[2], m[3] * v[0] + m[4] * v[1] + m[5] * v[2], m[6] * v[0] + m[7] * v[1] + m[8] * v[2]];
-  const CAM = mul(rx(-24 * D2R), ry(-55 * D2R));             // the app's chase camera
+  const CAM = mul(rx(-24 * D2R), ry(-55 * D2R));             // the app's fixed world camera
   const HALF = [0.55, 0.24, 1.0], GROUND = -0.75, SCALE = 50, CX = 100, CY = 82;
   const proj = (v) => { const p = apply(CAM, v); return [CX + p[0] * SCALE, CY - p[1] * SCALE, p[2]]; };
   const pts = (arr) => arr.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" ");
@@ -159,8 +159,8 @@
   const FACES = [[0, 1, 3, 2], [4, 6, 7, 5], [0, 2, 6, 4], [1, 5, 7, 3], [0, 4, 5, 1], [2, 3, 7, 6]];
   const FILL = ["rgba(76,122,42,.82)", "rgba(245,215,110,.86)", "rgba(76,122,42,.82)", "rgba(76,122,42,.82)", "rgba(49,79,27,.9)", "rgba(148,181,121,.9)"];
 
-  const drawAttitude = (pitch, roll) => {
-    const r = mul(rx(-pitch), rz(-roll));                     // chase: heading removed
+  const drawAttitude = (yaw, pitch, roll) => {
+    const r = mul(ry(yaw), mul(rx(-pitch), rz(-roll)));       // world: full orientation, heading included
     const corners = [];
     for (let i = 0; i < 8; i++)
       corners.push(apply(r, [i & 1 ? HALF[0] : -HALF[0], i & 2 ? HALF[1] : -HALF[1], i & 4 ? HALF[2] : -HALF[2]]));
@@ -247,8 +247,8 @@
   const signed = (v, d) => (v >= 0 ? "+" : "") + (v + 0).toFixed(d);
   const render = (t) => {
     advance(t);
-    const pitch = model.pitch(t), roll = model.roll(t);
-    drawAttitude(pitch, roll);
+    const yaw = model.yaw(t), pitch = model.pitch(t), roll = model.roll(t);
+    drawAttitude(yaw, pitch, roll);
     drawTrack();
     drawStrips();
     ro.roll && (ro.roll.textContent = `${signed(roll / D2R, 1)} °`);
@@ -282,8 +282,6 @@
   discovery(T0 - 2.4); motion(T0 - 2.0); motion(T0 - 1.5); event(T0 - 1.2); discovery(T0 - 0.4); motion(T0);
   render(T0);
 
-  if (reduceMotion) return;
-
   let running = true;
   let nextDiscovery = T0 + 1.6, nextMotion = T0 + 0.5, nextEvent = T0 + 3.8;
   let last = 0;
@@ -312,20 +310,28 @@
   const pause = () => { if (running) { running = false; pausedAt = performance.now(); } };
 
   // a visitor's pause wins over the automatic resume when it scrolls back into view
-  let userPaused = false, onScreen = true;
+  // reduced motion starts paused on the still frame; Play is one click away
+  let userPaused = reduceMotion, onScreen = true;
   const update = () => (!userPaused && onScreen && !document.hidden ? resume() : pause());
 
   const consoleEl = log.closest(".console");
   const pauseBtn = consoleEl && consoleEl.querySelector(".console-pause");
-  if (pauseBtn) {
-    pauseBtn.hidden = false;
-    pauseBtn.addEventListener("click", () => {
-      userPaused = !userPaused;
-      pauseBtn.classList.toggle("is-paused", userPaused);
-      pauseBtn.textContent = userPaused ? "Play" : "Pause";
-      update();
-    });
-  }
+  // paused: a big play button over the console (the video thumbnails' button)
+  const playBtn = document.createElement("button");
+  playBtn.type = "button";
+  playBtn.className = "console-play";
+  playBtn.setAttribute("aria-label", "Play the simulated stream");
+  if (consoleEl) consoleEl.appendChild(playBtn);
+  const setPaused = (paused) => {
+    userPaused = paused;
+    playBtn.hidden = !paused;
+    if (pauseBtn) pauseBtn.hidden = paused;
+    update();
+  };
+  playBtn.addEventListener("click", () => setPaused(false));
+  if (pauseBtn) pauseBtn.addEventListener("click", () => setPaused(true));
+  playBtn.hidden = !userPaused;
+  if (pauseBtn) pauseBtn.hidden = userPaused;
   if ("IntersectionObserver" in window && consoleEl) {
     new IntersectionObserver((entries) => {
       entries.forEach((e) => { onScreen = e.isIntersecting; update(); });
@@ -334,5 +340,6 @@
   document.addEventListener("visibilitychange", update);
 
   running = false;
-  resume();
+  if (userPaused) pausedAt = performance.now(); // resume from the still frame
+  update();
 })();
